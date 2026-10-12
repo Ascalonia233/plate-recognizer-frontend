@@ -85,7 +85,26 @@
   .result-row .label { color: var(--muted); }
   .result-row .value { color: #fff; font-weight: 800; text-align: right; max-width: 65%; }
   .result-row .value.plate { font-size: 20px; letter-spacing: 3px; color: #00d2ff; font-family: "Courier New", monospace; }
-  
+
+  /* 新增：置信度提示 */
+  .confidence-note {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed rgba(255,255,255,.08);
+    font-size: 11px;
+    color: #7c81a3;
+    line-height: 1.6;
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .confidence-note .icon {
+    font-size: 12px;
+    color: #00aaff;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
   /* Toast */
   .toast {
     position: fixed; left: 50%; top: 16%; transform: translate(-50%, -14px);
@@ -150,6 +169,12 @@
     <div class="result-row">
       <span class="label">置信度</span>
       <span class="value" id="rConf">—</span>
+    </div>
+
+    <!-- 新增提示：置信度为模拟数据 -->
+    <div class="confidence-note">
+      <span class="icon">ⓘ</span>
+      <span>置信度为模拟数据：多模态大模型的输出不包含置信度，此处数值仅供展示。</span>
     </div>
   </div>
 </div>
@@ -248,7 +273,7 @@
     } finally {
       analyzeBtn.disabled = false;
       analyzeBtn.innerHTML = '<span>🔍</span><span>开始识别</span>';
-      previewWrap.classList.remove('scanning');
+      previewWrap.classList.remove('scrolling');
     }
   });
 </script>
